@@ -5,26 +5,6 @@
   tags:
     - osp
 
-- hosts: tag_AnsibleGroup_bastions
-  gather_facts: no
-  vars:
-    - ec2_dynamic_inventory: "Three tier inventory"
-  tasks:
-    - name: Associate AWS tags as children to bastions group
-      command: |
-        tower-cli group associate --group tag_AnsibleGroup_bastions --parent bastions --inventory "{{ec2_dynamic_inventory}}"
-    - name: Associate AWS tags as children to frontends group
-      command: |
-        tower-cli group associate --group tag_AnsibleGroup_frontends --parent frontends --inventory "{{ec2_dynamic_inventory}}"
-    - name: Associate AWS tags as children to apps group
-      command: |
-        tower-cli group associate --group tag_AnsibleGroup_apps --parent apps --inventory "{{ec2_dynamic_inventory}}"
-    - name: Associate AWS tags as children to appdbs group
-      command: |
-        tower-cli group associate --group tag_AnsibleGroup_appdbs --parent appdbs --inventory "{{ec2_dynamic_inventory}}"
-  tags:
-    - prod
-
 # Setup front-end load balancer tier
 - name: setup load-balancer tier
   hosts: frontends
