@@ -5,6 +5,15 @@
   tags:
     - osp
 
+- hosts: bastions
+  gather_facts: no
+  tasks:
+    - name: Test connectivity to bastions
+      debug:
+        msg: "Test connectivity to bastions"
+  tags:
+    - prod
+
 # Setup front-end load balancer tier
 - name: setup load-balancer tier
   hosts: frontends
@@ -29,4 +38,5 @@
   roles:
     - {name: base-config, tags: base-config}
     - {name: db-tier, tags: [dbs, postgres]}
+
 
