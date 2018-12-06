@@ -20,9 +20,5 @@
  
 - name: install base tools and packages
   yum:
-    name: "{{ item }}" 
+    name: [u'httpie', u'python-pip']
     state: latest
-  with_items:
-    - httpie
-    - python-pip
-
